@@ -7,13 +7,13 @@
 ### <p align="center">Preview</p> 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a95a1a91-4c8f-4c47-b232-5211d9880ee4" width="500"/>
-  <img src="https://github.com/user-attachments/assets/116edb3f-24af-460b-8b16-7a94118306dd" width="500"/>
+  <img src="https://github.com/user-attachments/assets/a95a1a91-4c8f-4c47-b232-5211d9880ee4" width="300"/>
+  <img src="https://github.com/user-attachments/assets/116edb3f-24af-460b-8b16-7a94118306dd" width="300"/>
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ae99b0f8-0440-42a5-b84c-982390da0dc2" width="500"/>
-  <img src="https://github.com/user-attachments/assets/82c6ad67-3c3c-4f0d-9efa-4b13967bf456" width="500"/>
+  <img src="https://github.com/user-attachments/assets/ae99b0f8-0440-42a5-b84c-982390da0dc2" width="300"/>
+  <img src="https://github.com/user-attachments/assets/82c6ad67-3c3c-4f0d-9efa-4b13967bf456" width="300"/>
 </p>
 
 ### <p align="center">Disusun Oleh:</p> 
