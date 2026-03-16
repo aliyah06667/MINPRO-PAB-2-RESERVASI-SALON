@@ -25,43 +25,70 @@
 ---
 
 ## 🗂 DESKRIPSI APLIKASI
-**Beauti-Fy Salon** adalah aplikasi mobile berbasis Flutter untuk mengelola reservasi layanan salon secara digital. Aplikasi ini memungkinkan pengguna melakukan pencatatan dan pengelolaan data booking secara terstruktur melalui sistem CRUD (Create, Read, Update, Delete).
+**Beauti-Fy Salon** adalah aplikasi mobile berbasis Flutter untuk mengelola reservasi layanan salon secara digital. Aplikasi ini memungkinkan pengguna untuk melakukan pencatatan dan pengelolaan data booking secara terstruktur melalui sistem CRUD (Create, Read, Update, Delete).
 
-Pengguna dapat melakukan login dan register menggunakan ***Supabase Authentication***, kemudian menambahkan, melihat, mengedit, dan menghapus data reservasi yang tersimpan pada database Supabase. Aplikasi ini dirancang dengan navigasi multi-halaman serta antarmuka modern untuk memberikan pengalaman penggunaan yang lebih efisien dan interaktif.
+Seluruh data disimpan menggunakan Supabase sehingga tidak lagi menggunakan penyimpanan lokal. Selain itu, proses login dan pendaftaran akun juga menggunakan ***Supabase Authentication*** agar setiap pengguna memiliki akun masing-masing. Struktur aplikasi disusun dengan memisahkan model data, pengelolaan database, dan tampilan halaman agar kode lebih mudah dibaca dan dikembangkan.
 
 ---
 
 ## 🗂 STRUKTUR FOLDER
 
+<details>
+<summary> Lihat </summary>
+
+Berikut ini adalah struktur utama pada folder lib di projek *flutter*,
+
+```
+lib/
+│
+├── main.dart
+├── models/
+│   └── reservation.dart
+├── services/
+│   └── reservation_service.dart
+└── pages/
+    ├── login_page.dart
+    ├── register_page.dart
+    ├── home_page.dart
+    ├── add_page.dart
+    └── edit_page.dart
+```
+
 ### *1. main.dart*
 
-File utama aplikasi. Berfungsi untuk inisialisasi Supabase, mengatur routing awal, dan menjalankan aplikasi.
+File `main.dart` berfungsi sebagai titik awal aplikasi dijalankan. File ini memiliki beberapa peran penting, yaitu:
+- Mengatur inisialisasi Supabase saat aplikasi pertama kali dibuka
+- Mengatur tema aplikasi (light mode dan dark mode)
+- Menentukan halaman awal yang ditampilkan
+- Menjalankan runApp() sebagai entry point aplikasi
 
-### *2. models/*
+Selain itu, pengaturan perubahan tema juga diletakkan pada bagian ini agar bisa diakses oleh seluruh halaman, yang artinya `main.dart` adalah pusat pengaturan awal aplikasi.
 
-Berisi struktur model data yang digunakan dalam aplikasi.
+### *2. Folder models/*
+
+Folder ini menyimpan file yang digunakan untuk mendefinisikan struktur data. Folder `models` berisi:
 
 - #### *reservation.dart*
 
-  Model data yang mendefinisikan struktur reservasi yang terdiri dari beberapa field seperti id, name, contact, service, date, notes, dan price. Model ini digunakan untuk mempermudah pengelolaan dan pengiriman data antara form, halaman, dan service yang terhubung dengan Supabase.
+  File ini digunakan untuk mendefinisikan struktur reservasi yang terdiri dari beberapa field seperti id, name, contact, service, date, notes, dan price. Dengan adanya model ini, pengelolaan dan pengiriman data antara form, halaman, dan service yang terhubung dengan Supabase menjadi lebih mudah.
 
 ### *3. services/*
 
-Berisi file yang menangani proses komunikasi antara aplikasi dengan database Supabase.
+Folder ini menyimpan file yang digunakan untuk menangani proses komunikasi antara aplikasi dengan database Supabase. Folder `services` berisi:
 
 - #### *reservation_service.dart*
 
-  Bertanggung jawab untuk mengelola seluruh operasi CRUD (Create, Read, Update, Delete) ke database Supabase, yaitu:
-  - Create : Menambahkan data reservasi baru ke tabel reservations
-  - Read : Mengambil dan menampilkan seluruh data reservasi dari database
-  - Update : Memperbarui data reservasi berdasarkan id
-  - Delete : Menghapus data reservasi berdasarkan id
-    
-  File ini memisahkan logic database dari tampilan (UI) sehingga struktur kode menjadi lebih terorganisir dan mudah dikembangkan.
+  File ini digunakan untuk menjalankan seluruh operasi CRUD (Create, Read, Update, Delete) pada tabel `reservations` di Supabase. Beberapa fungsi yang terdapat di dalamnya, yaitu:
+  - `getReservations()` : mengambil seluruh data
+  - `addReservation()` : menambahkan data baru
+  - `updateReservation()` : mengubah data yang sudah ada
+  - `deleteReservation()` : menghapus data
 
-### *4. pages/*
+Dengan memisahkan bagian ini dari halaman, kode menjadi lebih bersih karena halaman hanya bertugas menampilkan tampilan, sedangkan proses penyimpanan data ditangani oleh service. Dibuat terpisah untuk memudahkan apabila suatu saat ingin mengganti sistem database tanpa mengubah banyak kode di bagian tampilan.
 
-Berisi seluruh halaman (screen) dalam aplikasi.
+### *4. Folder pages/*
+
+Folder ini menyimpan file yang terdapat seluruh halaman untuk berinteraksi langsung dengan pengguna. Folder `pages` berisi:
 
 - #### *login_page.dart*
 
@@ -73,27 +100,74 @@ Berisi seluruh halaman (screen) dalam aplikasi.
 
 - #### *home_page.dart*
   
-  Menampilkan daftar reservasi dan mengelola state data reservasi serta fitur-fitur yaitu Tambah data, Edit data dan Hapus data. Data ditampilkan langsung dari database Supabase.
+  Halaman utama yang menampilkan daftar reservasi dan mengelola state data reservasi serta fitur-fitur yaitu Tambah data, Edit data dan Hapus data. Data ditampilkan langsung dari database Supabase.
   
 - #### *add_page.dart*
   
-  Berisi form untuk menambahkan data reservasi baru menggunakan TextField, DropdownButtonFormField, dan showDatePicker. Data yang disimpan akan dikirim ke Supabase.
+  Halaman berisi form untuk menambahkan data reservasi baru menggunakan TextField, DropdownButtonFormField, dan showDatePicker. Data yang disimpan akan dikirim ke Supabase.
   
 - #### *edit_page.dart*
   
-  Berfungsi untuk mengubah data reservasi yang sudah ada. Data lama akan otomatis terisi dan dapat diperbarui.
+  Halaman berfungsi untuk mengubah data reservasi yang sudah ada atau sebelumnya telah dibuat di halaman `add_page`. Data lama akan otomatis terisi dan dapat diperbarui.
+
+---
+</details>
+
+## 🗂 STRUKTUR DATABASE
+
+<details>
+<summary> Lihat </summary>
+
+Aplikasi ini menggunakan satu tabel utama bernama `reservations`.Berikut ini adalah struktur tabel yang digunakan untuk menyimpan data reservasi **BeautiFy Salon** di dalam Supabase,
+
+| Field   | Tipe Data | Keterangan        |
+| ------- | --------- | ----------------- |
+| id      | int       | Primary key       |
+| name    | text      | Nama pelanggan    |
+| contact | text      | Kontak pelanggan  |
+| service | text      | Jenis layanan     |
+| date    | text      | Tanggal reservasi |
+| notes   | text      | Catatan tambahan  |
+| price   | int       | Harga layanan     |
+
+- #### id
+  Digunakan sebagai identitas unik setiap data reservasi. Nilai ini dibuat otomatis oleh database sehingga tidak perlu diinput secara manual.
+
+- #### name
+  Digunakan untuk menyimpan nama pelanggan yang melakukan reservasi. Field ini wajib diisi agar data dapat disimpan.
+
+- #### contact
+  Digunakan untuk menyimpan nomor telepon atau kontak pelanggan. Field ini juga wajib diisi untuk memudahkan komunikasi.
+
+ - #### service
+   Digunakan untuk menyimpan jenis layanan yang dipilih, misalnya haircut, coloring, atau treatment.
+
+- #### date
+  Digunakan untuk menyimpan tanggal reservasi. Tanggal dipilih melalui DatePicker agar format lebih terkontrol.
+
+- #### notes
+  Digunakan untuk menyimpan catatan tambahan dari pelanggan.
+Field ini bersifat opsional.
+
+- #### price
+  Digunakan untuk menyimpan harga layanan. Nilai ini  ditentukan otomatis berdasarkan layanan yang dipilih.
 
 ---
 
+</details>
+
 ## 🗂 FITUR APLIKASI
 
-**Beauti-Fy Salon** memiliki beberapa fitur utama yang terbagi ke dalam *LoginPage*, *RegisterPage*, *HomePage*, *AddPage*, *EditPage*, serta sistem pendukung seperti *Theme Management*, *Loading State*, dan *Error Handling*. Pada bagian ini dijelaskan fitur-fitur yang tersedia serta bagaimana fitur tersebut diimplementasikan di dalam kode program dan integrasinya dengan Supabase.
+<details>
+<summary> Lihat </summary>
+
+**Beauti-Fy Salon** memiliki beberapa fitur utama yang terbagi ke dalam *LoginPage*, *RegisterPage*, *HomePage*, *AddPage*, *EditPage*, serta sistem pendukung seperti *Theme Management*, *Loading State*, dan *Error Handling*. Pada bagian ini akan saya jelaskan fitur-fitur yang tersedia serta bagaimana fitur tersebut diimplementasikan di dalam kode program dan integrasinya dengan Supabase.
 
 ### 1. LoginPage
 
-*LoginPage* merupakan halaman awal aplikasi yang berfungsi sebagai sistem autentikasi pengguna sebelum dapat mengakses fitur utama aplikasi. Halaman ini menggunakan **StatefulWidget** karena terdapat perubahan state seperti loading indicator dan toggle visibility password.
+*LoginPage* merupakan halaman awal aplikasi yang berfungsi sebagai sistem autentikasi pengguna sebelum dapat mengakses fitur utama aplikasi. Halaman ini menggunakan `StatefulWidget` karena terdapat perubahan state seperti loading indicator dan toggle visibility password.
 
-🔹 Fitur:
+**Fitur yang tersedia:**
 - Input email dan password
 - Validasi form (tidak boleh kosong)
 - Show / Hide password
@@ -102,14 +176,16 @@ Berisi seluruh halaman (screen) dalam aplikasi.
 - Notifikasi berhasil / gagal
 - Navigasi ke RegisterPage
 
-Controller yang digunakan:
+**Controller yang digunakan:**
 
 ~~~ Javascript
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 ~~~
 
-Proses login dilakukan menggunakan Supabase Auth:
+Controller ini digunakan untuk mengambil nilai input dari pengguna.
+
+**Proses login dilakukan menggunakan Supabase Auth:**
 
 ~~~ Javascript
 await Supabase.instance.client.auth.signInWithPassword(
@@ -118,13 +194,17 @@ await Supabase.instance.client.auth.signInWithPassword(
 );
 ~~~
 
-State loading dikontrol menggunakan:
+Sebelum proses login dijalankan, sistem akan melakukan validasi agar email dan password tidak kosong.
+
+**State loading dikontrol menggunakan:**
 
 ~~~ Javascript
 setState(() {
   isLoading = true;
 });
 ~~~
+
+Loading indicator akan muncul untuk memberi tahu pengguna bahwa proses sedang berjalan.
 
 Jika login berhasil:
 - Menampilkan SnackBar: "Login successful"
@@ -135,18 +215,19 @@ Jika gagal:
 
 ### 2. RegisterPage
 
-RegisterPage digunakan untuk membuat akun baru menggunakan Supabase Authentication. Halaman ini juga menggunakan StatefulWidget karena membutuhkan validasi input dan loading state.
+RegisterPage digunakan untuk membuat akun baru menggunakan ***Supabase Authentication***. Halaman ini juga menggunakan `StatefulWidget` karena membutuhkan validasi input dan loading state.
 
-🔹 Fitur:
+**Fitur yang tersedia:**
 - Input email dan password
 - Validasi form (tidak boleh kosong)
+- Password minimal 8 karakter
 - Show / Hide password
 - Register menggunakan Supabase Auth
 - Loading indicator saat proses regist
 - Notifikasi berhasil / gagal
 - Navigasi ke LoginPage
   
-Proses registrasi dilakukan menggunakan:
+**Proses registrasi dilakukan menggunakan:**
 
 ~~~ Javascript
 await Supabase.instance.client.auth.signUp(
@@ -155,9 +236,10 @@ await Supabase.instance.client.auth.signUp(
 );
 ~~~
 
-Validasi dilakukan sebelum proses register:
-- Email tidak boleh kosong
-- Password minimal 6 karakter
+Sebelum proses dijalankan, sistem memastikan:
+- Email tidak kosong
+- Password tidak kosong
+- Password memenuhi minimal karakter
 
 Jika registrasi berhasil:
 - Menampilkan SnackBar "Account successfully created"
@@ -165,36 +247,19 @@ Jika registrasi berhasil:
 
 ### 3. HomePage
 
-*HomePage* merupakan halaman utama setelah pengguna berhasil login. Halaman ini menampilkan seluruh data reservasi yang diambil dari database Supabase. Halaman ini menggunakan StatefulWidget karena data bersifat dinamis dan berubah setelah operasi CRUD.
+*HomePage* merupakan halaman utama setelah pengguna berhasil login. Halaman ini menampilkan seluruh data reservasi yang diambil dari database Supabase. Halaman ini menggunakan `StatefulWidget` karena data bersifat dinamis dan berubah setelah operasi CRUD.
 
-🔹 Fitur:
+**Fitur yang tersedia:**
 - Menampilkan seluruh data reservasi dari Supabase
 - Loading indicator saat mengambil data
 - Error handling jika gagal load data
 - Tombol tambah data
 - Tombol edit data
 - Tombol delete data
+- Konfirmasi sebelum delete
 - Logout
-- Menampilkan harga layanan
+- Konfirmasi sebelum logout
 - Refresh otomatis setelah melakukan CRUD
-
-Data tidak disimpan dalam List lokal statis, tetapi diambil dari Supabase menggunakan:
-
-~~~ Javascript
-final data = await supabase.from('reservations').select();
-~~~
-
-Data kemudian ditampilkan menggunakan ListView.builder.
-
-Setiap item reservasi menampilkan atribut:
-- name
-- contact
-- service
-- date
-- notes
-- price
-
-Perubahan data diperbarui menggunakan setState() agar tampilan otomatis refresh setelah create, update, atau delete.
 
  #### a. Menampilkan Data (Read)
 
@@ -207,11 +272,19 @@ Future<List> getReservations() async {
 }
 ~~~
 
-Loading state ditampilkan menggunakan CircularProgressIndicator saat data sedang dimuat.
+Selama proses pengambilan data berlangsung, ditampilkan `CircularProgressIndicator`. Data ditampilkan menggunakan `ListView.builder`, dan setiap item reservasi menampilkan atribut:
+- name
+- contact
+- service
+- date
+- notes
+- price
+
+Setelah data berubah (create, update, delete), `setState()` dipanggil agar tampilan otomatis diperbarui.
 
 #### b. Tombol Tambah Data
 
-Pada bagian bawah halaman terdapat tombol FloatingActionButton untuk menambahkan reservasi baru.
+Pada bagian bawah halaman terdapat tombol  `FloatingActionButton` untuk menambahkan reservasi baru.
 
 ~~~ Javascript
 FloatingActionButton(
@@ -225,9 +298,7 @@ Tombol ini mengarahkan pengguna ke *AddPage*.
 
 #### c. Tombol Edit
 
-Setiap item memiliki tombol edit yang akan mengirimkan data lama ke EditPage melalui parameter constructor.
-
-Navigasi dilakukan menggunakan:
+Setiap item memiliki tombol edit yang akan mengirimkan data lama ke *EditPage* melalui parameter constructor:
 
 ~~~ Javascript
 Navigator.push(
@@ -238,104 +309,13 @@ Navigator.push(
 );
 ~~~
 
+Data lama kemudian diisi otomatis ke dalam form.
+
 #### d. Tombol Delete
-
-Penghapusan data dilakukan menggunakan method delete pada service:
-
-~~~ Javascript
-await supabase.from('reservations').delete().eq('id', id);
-~~~
-
-Setelah berhasil:
-- Data di-refresh
-- Menampilkan SnackBar "Data successfully deleted"
-
-#### e. Logout
-
-Logout dilakukan menggunakan:
-
-~~~ Javascript
-await Supabase.instance.client.auth.signOut();
-~~~
-
-Setelah logout:
-- Kembali ke *LoginPage*
-
-### 4. AddPage (Create Reservation)
-
-*AddPage* digunakan untuk menambahkan data reservasi baru ke database Supabase.
-
-Komponen form yang digunakan:
-- `TextField` untuk name, contact, notes
-- `DropdownButtonFormField` untuk memilih service
-- `showDatePicker()` untuk memilih tanggal
-
-Contoh implementasi DatePicker:
-
-~~~ Javascript
-final pickedDate = await showDatePicker(
-  context: context,
-  initialDate: DateTime.now(),
-  firstDate: DateTime(2023),
-  lastDate: DateTime(2100),
-);
-~~~
-
-Harga layanan otomatis ditentukan berdasarkan pilihan service.
-
-Data dikirim ke Supabase melalui:
-
-~~~ Javascript
-await supabase.from('reservations').insert({
-  'name': name,
-  'contact': contact,
-  'service': service,
-  'date': date,
-  'notes': notes,
-  'price': price,
-});
-~~~
-
-Jika berhasil:
-- Menampilkan "Data successfully created"
-- Kembali ke *HomePage*
-
-### 5. EditPage (Update Reservation)
-
-EditPage digunakan untuk memperbarui data reservasi yang sudah ada.
-
-Data lama dikirim dari HomePage dan diinisialisasi ke dalam controller:
-
-~~~ Javascript
-nameController.text = widget.reservation['name'];
-~~~
-
-Proses update dilakukan menggunakan:
-
-~~~ Javascript
-await supabase
-  .from('reservations')
-  .update({
-    'name': name,
-    'contact': contact,
-    'service': service,
-    'date': date,
-    'notes': notes,
-    'price': price,
-  })
-  .eq('id', id);
-~~~
-
-Jika berhasil:
-- Menampilkan "Data successfully updated"
-- Kembali ke *HomePage*
-- Data otomatis diperbarui
-
-### 6. Delete Reservation
 
 Delete Reservation digunakan untuk menghapus data reservasi yang sudah ada dari database Supabase. Sebelum data benar-benar dihapus, sistem akan menampilkan dialog konfirmasi untuk memastikan pengguna tidak menghapus data secara tidak sengaja.
 
-Dialog konfirmasi ditampilkan menggunakan:
+**Dialog konfirmasi ditampilkan menggunakan:**
 
 ~~~ Javascript
 showDialog(
@@ -379,26 +359,112 @@ Jika pengguna memilih Delete:
   - Kembali ke *HomePage*
   - Data otomatis diperbarui
 
-### 7. Dark Mode & Light Mode
+#### e. Logout
+
+Logout dilakukan menggunakan:
+
+~~~ Javascript
+await Supabase.instance.client.auth.signOut();
+~~~
+
+Setelah logout:
+- Kembali ke *LoginPage*
+
+### 4. AddPage (Create Reservation)
+
+*AddPage* digunakan untuk menambahkan data reservasi baru ke database Supabase.
+
+**Komponen form yang digunakan:**
+- `TextField` untuk name, contact, notes
+- `DropdownButtonFormField` untuk memilih service
+- `showDatePicker()` untuk memilih tanggal
+
+**Implementasi DatePicker:**
+
+~~~ Javascript
+final pickedDate = await showDatePicker(
+  context: context,
+  initialDate: DateTime.now(),
+  firstDate: DateTime(2023),
+  lastDate: DateTime(2100),
+);
+~~~
+
+Harga layanan otomatis ditentukan berdasarkan pilihan service.
+
+**Data dikirim ke Supabase melalui:**
+
+~~~ Javascript
+await supabase.from('reservations').insert({
+  'name': name,
+  'contact': contact,
+  'service': service,
+  'date': date,
+  'notes': notes,
+  'price': price,
+});
+~~~
+
+Sebelum data dikirim, sistem melakukan validasi agar field penting tidak kosong.
+
+Jika berhasil:
+- Menampilkan "Data successfully created"
+- Kembali ke *HomePage*
+- Data otomatis diperbarui
+
+### 5. EditPage (Update Reservation)
+
+*EditPage* digunakan untuk memperbarui data reservasi yang sudah ada. 
+
+**Data lama dikirim dari HomePage dan diinisialisasi ke dalam controller:**
+
+~~~ Javascript
+nameController.text = widget.reservation['name'];
+~~~
+
+**Proses update dilakukan menggunakan:**
+
+~~~ Javascript
+await supabase
+  .from('reservations')
+  .update({
+    'name': name,
+    'contact': contact,
+    'service': service,
+    'date': date,
+    'notes': notes,
+    'price': price,
+  })
+  .eq('id', id);
+~~~
+
+Jika berhasil:
+- Menampilkan "Data successfully updated"
+- Kembali ke *HomePage*
+- Data otomatis diperbarui
+
+### 6. Dark Mode & Light Mode
 
 Aplikasi mendukung perubahan tema tampilan.
 
-🔹 Fitur:
+**Fitur yang tersedia:**
 - Toggle Light Mode
 - Toggle Dark Mode
 - Tampilan berubah secara real-time
 
-Implementasi menggunakan ThemeMode pada MaterialApp:
+**Implementasi menggunakan ThemeMode pada MaterialApp:**
 
 ~~~ Javascript
 themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
 ~~~
 
-State theme dikontrol menggunakan setState().
+State dikontrol menggunakan `setState()` sehingga perubahan langsung terlihat tanpa perlu restart aplikasi.
 
-### 8. Loading State & Error Handling
+### 7. Loading State & Error Handling
 
-Setiap proses asynchronous dibungkus dalam try-catch:
+Aplikasi menangani proses asynchronous dan kesalahan.
+
+**Setiap proses penting dibungkus dalam try-catch:**
 
 ~~~ Javascript
 try {
@@ -410,7 +476,7 @@ try {
 }
 ~~~
 
-Loading indicator menggunakan:
+**Loading indicator menggunakan:**
 
 ~~~ Javascript
 if (isLoading)
@@ -427,56 +493,72 @@ Seluruh data:
 - Menggunakan tabel `reservations`
 - Dikelola melalui `ReservationService`
 
-Struktur ini menerapkan konsep separation of concerns dengan memisahkan UI dan database logic.
+Pemisahan antara tampilan dan pengelolaan database membuat kode lebih rapi dan mudah dikembangkan jika suatu saat ingin menambahkan fitur baru.
 
 ---
+
+</details>
 
 ## 🗂 WIDGET & KOMPONEN YANG DIGUNAKAN
-Berikut widget utama yang digunakan dalam aplikasi:
 
-| WIDGET / KOMPONEN | KETERANGAN |
-|-------------------|------------|
-| MaterialApp | Root widget aplikasi yang mengatur tema, navigasi, dan konfigurasi global aplikasi. |
-| ThemeData | Mengatur tampilan Light Mode dan Dark Mode. |
-| ThemeMode | Mengontrol perubahan tema secara dinamis. |
-| Scaffold | Struktur dasar setiap halaman seperti AppBar, body, dan FloatingActionButton. |
-| AppBar | Menampilkan judul halaman serta tombol aksi seperti logout dan toggle theme. |
-| SafeArea | Menyesuaikan tampilan agar tidak tertutup sistem UI perangkat. |
-| Column | Menyusun widget secara vertikal. |
-| Row | Menyusun widget secara horizontal. |
-| Container | Membungkus widget dan mengatur styling seperti warna dan margin. |
-| Padding | Memberikan jarak antar widget agar tampilan lebih rapi. |
-| SizedBox | Memberikan jarak atau ukuran tetap antar komponen. |
-| Center | Memposisikan widget di tengah layar. |
-| Expanded | Membuat widget menyesuaikan ruang yang tersedia. |
-| Text | Menampilkan informasi seperti nama, layanan, tanggal, dan harga. |
-| Icon | Menampilkan ikon pada field atau tombol aksi. |
-| TextField | Digunakan untuk input data seperti nama, kontak, email, password, dan catatan. |
-| TextEditingController | Mengontrol dan mengambil nilai dari TextField. |
-| DropdownButtonFormField | Digunakan untuk memilih jenis layanan salon. |
-| InputDecoration | Mengatur tampilan TextField seperti label, hint, icon, dan border. |
-| showDatePicker | Digunakan untuk memilih tanggal reservasi. |
-| Navigator.push | Berpindah ke halaman baru seperti AddPage dan EditPage. |
-| Navigator.pushReplacement | Mengganti halaman, misalnya setelah login berhasil. |
-| Navigator.pop | Kembali ke halaman sebelumnya atau menutup dialog. |
-| MaterialPageRoute | Mengatur transisi antar halaman. |
-| ListView.builder | Menampilkan daftar reservasi secara dinamis dari database Supabase. |
-| Card | Menampilkan data reservasi dalam bentuk kartu agar lebih terstruktur. |
-| ListTile | Menyusun informasi reservasi dalam satu baris rapi (jika digunakan). |
-| IconButton | Tombol aksi seperti edit dan delete. |
-| FloatingActionButton | Tombol untuk menambahkan reservasi baru. |
-| SnackBar | Menampilkan notifikasi seperti "Data successfully created", "updated", atau "deleted". |
-| ScaffoldMessenger | Mengontrol dan menampilkan SnackBar. |
-| AlertDialog | Menampilkan konfirmasi sebelum menghapus data. |
-| TextButton | Tombol pada dialog seperti Cancel dan Delete. |
-| CircularProgressIndicator | Menampilkan loading indicator saat proses async berjalan (login, register, CRUD, fetch data). |
-| StatefulWidget | Digunakan pada halaman dengan perubahan data dinamis seperti HomePage, AddPage, EditPage, LoginPage, dan RegisterPage. |
-| StatelessWidget | Digunakan pada halaman yang tidak memiliki perubahan state. |
-| setState() | Digunakan untuk memperbarui tampilan setelah terjadi perubahan data. |
+<details>
+<summary> Lihat </summary>
+
+Aplikasi **Beauti-Fy Salon** menggunakan beberapa widget dan komponen utama dalam pengembangannya. Seluruh tampilan dan interaksi pada aplikasi dibangun menggunakan widget bawaan Flutter. Setiap widget memiliki peran masing-masing, mulai dari mengatur struktur halaman, menangani input pengguna, menampilkan data, hingga memberikan notifikasi dan dialog konfirmasi.
+
+Berikut ini adalah daftar widget dan komponen yang digunakan beserta fungsinya di dalam aplikasi:
+
+| WIDGET / KOMPONEN         | KETERANGAN                                                                                                                    |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| MaterialApp               | Widget utama (root) aplikasi yang mengatur tema, navigasi awal, dan konfigurasi global aplikasi.                              |
+| ThemeData                 | Digunakan untuk mengatur tampilan visual seperti warna, font, dan brightness pada Light Mode dan Dark Mode.                   |
+| ThemeMode                 | Mengontrol perubahan tema secara dinamis berdasarkan kondisi (light atau dark).                                               |
+| Scaffold                  | Kerangka dasar setiap halaman yang menyediakan AppBar, body, dan FloatingActionButton.                                        |
+| AppBar                    | Menampilkan judul halaman serta tombol aksi seperti logout dan toggle tema.                                                   |
+| SafeArea                  | Menjaga agar tampilan tidak tertutup oleh sistem UI perangkat seperti notch atau status bar.                                  |
+| Column                    | Menyusun widget secara vertikal, biasanya digunakan pada form input.                                                          |
+| Row                       | Menyusun widget secara horizontal, misalnya untuk tombol edit dan delete dalam satu baris.                                    |
+| Container                 | Membungkus widget lain dan mengatur properti seperti warna, padding, margin, dan border.                                      |
+| Padding                   | Memberikan jarak antar widget agar tampilan lebih rapi dan tidak terlalu rapat.                                               |
+| SizedBox                  | Memberikan jarak atau ukuran tetap antar komponen.                                                                            |
+| Center                    | Memposisikan widget tepat di tengah layar, misalnya untuk loading indicator.                                                  |
+| Expanded                  | Membuat widget menyesuaikan ruang kosong yang tersedia dalam Row atau Column.                                                 |
+| Text                      | Menampilkan informasi seperti nama pelanggan, layanan, tanggal, dan harga.                                                    |
+| Icon                      | Menampilkan ikon untuk memperjelas fungsi tombol atau field tertentu.                                                         |
+| TextField                 | Digunakan untuk input data seperti nama, kontak, email, password, dan catatan.                                                |
+| TextEditingController     | Mengontrol serta mengambil nilai dari TextField.                                                                              |
+| DropdownButtonFormField   | Digunakan untuk memilih jenis layanan salon melalui dropdown.                                                                 |
+| InputDecoration           | Mengatur tampilan TextField seperti label, hint, icon, dan border.                                                            |
+| showDatePicker            | Digunakan untuk memilih tanggal reservasi melalui dialog kalender.                                                            |
+| Navigator.push            | Digunakan untuk berpindah ke halaman baru seperti AddPage dan EditPage.                                                       |
+| Navigator.pushReplacement | Digunakan untuk mengganti halaman, misalnya setelah login berhasil agar tidak bisa kembali ke halaman login.                  |
+| Navigator.pop             | Digunakan untuk kembali ke halaman sebelumnya atau menutup dialog.                                                            |
+| MaterialPageRoute         | Mengatur perpindahan halaman beserta transisinya.                                                                             |
+| ListView.builder          | Menampilkan daftar reservasi secara dinamis berdasarkan data dari Supabase.                                                   |
+| Card                      | Menampilkan data reservasi dalam bentuk kartu agar lebih terstruktur dan mudah dibaca.                                        |
+| ListTile                  | Digunakan untuk menyusun informasi reservasi dalam satu baris yang rapi (jika digunakan).                                     |
+| IconButton                | Tombol aksi seperti edit dan delete pada setiap item reservasi.                                                               |
+| FloatingActionButton      | Tombol utama untuk menambahkan reservasi baru.                                                                                |
+| SnackBar                  | Menampilkan notifikasi seperti "Data successfully created", "updated", atau "deleted".                                        |
+| ScaffoldMessenger         | Mengontrol dan menampilkan SnackBar pada halaman tertentu.                                                                    |
+| AlertDialog               | Menampilkan dialog konfirmasi sebelum menghapus data.                                                                         |
+| TextButton                | Tombol aksi pada dialog seperti Cancel dan Delete.                                                                            |
+| CircularProgressIndicator | Menampilkan loading indicator saat proses asynchronous berjalan (login, register, CRUD, fetch data).                          |
+| StatefulWidget            | Digunakan pada halaman yang memiliki perubahan data dinamis seperti HomePage, AddPage, EditPage, LoginPage, dan RegisterPage. |
+| StatelessWidget           | Digunakan pada widget atau halaman yang tidak memiliki perubahan state.                                                       |
+| setState()                | Digunakan untuk memperbarui tampilan setelah terjadi perubahan data atau state.                                               |
 
 ---
 
+</details>
+
 ## 🗂 TAMPILAN APLIKASI
+
+<details>
+<summary> Lihat </summary>
+
+Berikut ini adalah hasil implementasi antarmuka dari aplikasi Beauti-Fy Salon.
+Setiap halaman ditampilkan dalam dua mode, yaitu Light Mode dan Dark Mode, untuk menunjukkan bahwa sistem tema berjalan dengan baik dan konsisten di seluruh aplikasi. Pada mode terang, warna latar lebih cerah dengan teks yang kontras sehingga mudah dibaca, sedangkan pada mode gelap warna latar berubah menjadi lebih gelap dengan teks terang untuk mengurangi ketegangan mata saat digunakan dalam kondisi minim cahaya.
 
 ### 1. Halaman LoginPage
 
@@ -518,7 +600,7 @@ Berikut widget utama yang digunakan dalam aplikasi:
 
 <img width="1919" height="904" alt="Image" src="https://github.com/user-attachments/assets/0ab2ded1-9531-4255-9c86-57d719b54582" />
 
-### 4. Edit Reservation Page
+### 5. Edit Reservation Page
 
 #### *Tampilan Light Mode*
 
@@ -528,25 +610,70 @@ Berikut widget utama yang digunakan dalam aplikasi:
 
 <img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" />
 
+### 6. Dialog Konfirmasi Delete
+
+#### *Tampilan Light Mode*
+
+<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/d3e0822a-3772-4e66-8717-6116a992b489" />
+
+#### *Tampilan Dark Mode*
+
+<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" 
+
+### 7. Dialog Konfirmasi Logout
+
+#### *Tampilan Light Mode*
+
+<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/d3e0822a-3772-4e66-8717-6116a992b489" />
+
+#### *Tampilan Dark Mode*
+
+<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" 
+
 ---
 
-## 🗂 LANGKAH - LANGKAH PENGGUNAAN APLIKASI 
+</details>
+
+## 🗂 ALUR PENGGUNAAN APLIKASI 
+
+Berikut ini adalah alur penggunaan aplikasi **Beauti-Fy Salon** dari pertama kali dibuka hingga pengguna keluar dari sistem:
 
 ### 1. Masuk Halaman Login
 
-Pada saat pertama kali membuka aplikasi **Beauti-Fy Salon**, pengguna akan langsung diarahkan ke halaman login. Di sini, pengguna dapat memasukkan email dan password mereka untuk masuk.
+Pada saat pertama kali membuka aplikasi, pengguna akan langsung diarahkan ke halaman *LoginPage*. 
 
 <p align="center"><img width="1919" height="907" alt="Image" src="https://github.com/user-attachments/assets/19f69132-7938-4824-9595-c12c35543fef" /></p>
 
-Jika belum memiliki akun, pengguna cukup menekan tombol “Sign Up” dan akan diarahkan ke halaman pendaftaran akun baru. Terdapat fitur show/hide password sehingga pengguna bisa memastikan kata sandi yang diketik sudah benar.
+Di halaman ini, pengguna diminta untuk:
+- Memasukkan email
+- Memasukkan password
+- Menekan tombol "LOGIN"
+
+<img width="1030" height="614" alt="Image" src="https://github.com/user-attachments/assets/f8eca537-dcf5-4850-bee7-e24d34f89731" />
+
+Tersedia fitur show/hide password agar pengguna dapat memastikan kata sandi yang diketik sudah benar.
+
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/934c03e4-99ba-4d31-8a9e-0e29504b1974" width="400" style="border:2px solid #ddd; border-radius:10px;">
+</p>
+
+Jika belum memiliki akun, pengguna dapat menekan tombol Sign Up untuk menuju halaman pendaftaran.
 
 <p align="center">
    <img src="https://github.com/user-attachments/assets/37f08454-b302-465a-93f6-2e28461550c6" width="400" style="border:2px solid #ddd; border-radius:10px;">
 </p>
 
+Jika login berhasil:
+- Muncul notifikasi “Login successful”
+- Pengguna langsung diarahkan ke HomePage
+
+Jika gagal:
+- Muncul pesan error
+- Pengguna tetap berada di halaman login
+
 ### 2. Mendaftar di Halaman Register
 
-Setelah menekan “Sign Up”, pengguna akan masuk ke halaman register. 
+Setelah menekan “Sign Up”, pengguna akan masuk ke halaman *RegisterPage*. 
 
 <img width="1919" height="907" alt="Image" src="https://github.com/user-attachments/assets/116edb3f-24af-460b-8b16-7a94118306dd" />
 
