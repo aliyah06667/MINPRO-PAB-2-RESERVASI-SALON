@@ -558,7 +558,7 @@ Berikut ini adalah hasil implementasi antarmuka dari aplikasi **Beauti-Fy Salon*
 
 - **Tampilan Dark Mode**
 
-<img width="1919" height="900" alt="Image" src="https://github.com/user-attachments/assets/63acceae-e680-45a0-a006-3d650bda3b9d" />
+  <img width="1919" height="900" alt="Image" src="https://github.com/user-attachments/assets/63acceae-e680-45a0-a006-3d650bda3b9d" />
 
 ### 3. Halaman HomePage
 
