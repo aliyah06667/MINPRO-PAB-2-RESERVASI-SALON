@@ -35,7 +35,7 @@ Seluruh data disimpan menggunakan Supabase sehingga tidak lagi menggunakan penyi
 <details>
 <summary><h2>📁 STRUKTUR FOLDER<h2></summary>
 
-Berikut ini adalah struktur utama pada folder lib di projek *flutter*,
+Berikut ini adalah struktur utama pada folder `lib`,
 
 ```
 lib/
