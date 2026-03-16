@@ -115,17 +115,18 @@ Folder ini menyimpan file yang terdapat seluruh halaman untuk berinteraksi langs
 <details>
 <summary><h2>📁 STRUKTUR DATABASE<h2></summary>
 
-Aplikasi ini menggunakan satu tabel utama bernama `reservations`.Berikut ini adalah struktur tabel yang digunakan untuk menyimpan data reservasi **BeautiFy Salon** di dalam Supabase,
+Berikut ini adalah struktur database yang digunakan pada aplikasi **Beauti-Fy Salon**. Database disimpan menggunakan Supabase dan memiliki satu tabel utama bernama reservations yang berfungsi untuk menyimpan seluruh data booking pelanggan.
 
-| Field   | Tipe Data | Keterangan        |
-| ------- | --------- | ----------------- |
-| id      | int       | Primary key       |
-| name    | text      | Nama pelanggan    |
-| contact | text      | Kontak pelanggan  |
-| service | text      | Jenis layanan     |
-| date    | text      | Tanggal reservasi |
-| notes   | text      | Catatan tambahan  |
-| price   | int       | Harga layanan     |
+| Kolom | Tipe Data | Keterangan                                                                                 |
+| ---------- | --------- | ------------------------------------------------------------------------------------------ |
+| id         | bigint    | Primary key. Dibuat otomatis menggunakan sistem identity dari database.                    |
+| name       | text      | Menyimpan nama pelanggan. Tidak boleh kosong.                                              |
+| contact    | text      | Menyimpan nomor kontak pelanggan. Tidak boleh kosong.                                      |
+| service    | text      | Menyimpan jenis layanan yang dipilih. Tidak boleh kosong.                                  |
+| date       | text      | Menyimpan tanggal reservasi. Tidak boleh kosong.                                           |
+| notes      | text      | Menyimpan catatan tambahan dari pelanggan. Boleh kosong.                                   |
+| price      | integer   | Menyimpan harga layanan sesuai pilihan service. Tidak boleh kosong.                        |
+| created_at | timestamp | Menyimpan waktu saat data reservasi dibuat. Otomatis terisi dengan waktu saat insert data. |
 
 Penjelasan masing-masing atribut:
 
