@@ -536,7 +536,7 @@ Berikut ini adalah daftar widget dan komponen yang digunakan beserta fungsinya d
 
 
 <details>
-<summary><h2>📁 TAMPILAN APLIKASI<h2></summary>
+<summary><h2>📁 TAMPILAN APLIKASI (LIGHT/DARK)<h2></summary>
 
 Berikut ini adalah hasil implementasi antarmuka dari aplikasi Beauti-Fy Salon.
 Setiap halaman ditampilkan dalam dua mode, yaitu Light Mode dan Dark Mode, untuk menunjukkan bahwa sistem tema berjalan dengan baik dan konsisten di seluruh aplikasi. Pada mode terang, warna latar lebih cerah dengan teks yang kontras sehingga mudah dibaca, sedangkan pada mode gelap warna latar berubah menjadi lebih gelap dengan teks terang untuk mengurangi ketegangan mata saat digunakan dalam kondisi minim cahaya.
