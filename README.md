@@ -24,17 +24,16 @@
 
 ---
 
-## 🗂 DESKRIPSI APLIKASI
+## 📁 DESKRIPSI APLIKASI
+
 **Beauti-Fy Salon** adalah aplikasi mobile berbasis Flutter untuk mengelola reservasi layanan salon secara digital. Aplikasi ini memungkinkan pengguna untuk melakukan pencatatan dan pengelolaan data booking secara terstruktur melalui sistem CRUD (Create, Read, Update, Delete).
 
 Seluruh data disimpan menggunakan Supabase sehingga tidak lagi menggunakan penyimpanan lokal. Selain itu, proses login dan pendaftaran akun juga menggunakan ***Supabase Authentication*** agar setiap pengguna memiliki akun masing-masing. Struktur aplikasi disusun dengan memisahkan model data, pengelolaan database, dan tampilan halaman agar kode lebih mudah dibaca dan dikembangkan.
 
 ---
 
-## 🗂 STRUKTUR FOLDER
-
 <details>
-<summary> Lihat </summary>
+<summary><h2>📁 STRUKTUR FOLDER<h2></summary>
 
 Berikut ini adalah struktur utama pada folder lib di projek *flutter*,
 
@@ -113,10 +112,8 @@ Folder ini menyimpan file yang terdapat seluruh halaman untuk berinteraksi langs
 ---
 </details>
 
-## 🗂 STRUKTUR DATABASE
-
 <details>
-<summary> Lihat </summary>
+<summary><h2>📁 STRUKTUR DATABASE<h2></summary>
 
 Aplikasi ini menggunakan satu tabel utama bernama `reservations`.Berikut ini adalah struktur tabel yang digunakan untuk menyimpan data reservasi **BeautiFy Salon** di dalam Supabase,
 
@@ -156,10 +153,8 @@ Field ini bersifat opsional.
 
 </details>
 
-## 🗂 FITUR APLIKASI
-
 <details>
-<summary> Lihat </summary>
+<summary><h2>📁 FITUR APLIKASI<h2></summary>
 
 **Beauti-Fy Salon** memiliki beberapa fitur utama yang terbagi ke dalam *LoginPage*, *RegisterPage*, *HomePage*, *AddPage*, *EditPage*, serta sistem pendukung seperti *Theme Management*, *Loading State*, dan *Error Handling*. Pada bagian ini akan saya jelaskan fitur-fitur yang tersedia serta bagaimana fitur tersebut diimplementasikan di dalam kode program dan integrasinya dengan Supabase.
 
@@ -499,11 +494,10 @@ Pemisahan antara tampilan dan pengelolaan database membuat kode lebih rapi dan m
 
 </details>
 
-## 🗂 WIDGET & KOMPONEN YANG DIGUNAKAN
 
 <details>
-<summary> Lihat </summary>
-
+<summary><h2>📁 WIDGET & KOMPONEN YANG DIGUNAKAN<h2></summary>
+  
 Aplikasi **Beauti-Fy Salon** menggunakan beberapa widget dan komponen utama dalam pengembangannya. Seluruh tampilan dan interaksi pada aplikasi dibangun menggunakan widget bawaan Flutter. Setiap widget memiliki peran masing-masing, mulai dari mengatur struktur halaman, menangani input pengguna, menampilkan data, hingga memberikan notifikasi dan dialog konfirmasi.
 
 Berikut ini adalah daftar widget dan komponen yang digunakan beserta fungsinya di dalam aplikasi:
@@ -552,10 +546,10 @@ Berikut ini adalah daftar widget dan komponen yang digunakan beserta fungsinya d
 
 </details>
 
-## 🗂 TAMPILAN APLIKASI
+
 
 <details>
-<summary> Lihat </summary>
+<summary><h2>📁 TAMPILAN APLIKASI<h2></summary>
 
 Berikut ini adalah hasil implementasi antarmuka dari aplikasi Beauti-Fy Salon.
 Setiap halaman ditampilkan dalam dua mode, yaitu Light Mode dan Dark Mode, untuk menunjukkan bahwa sistem tema berjalan dengan baik dan konsisten di seluruh aplikasi. Pada mode terang, warna latar lebih cerah dengan teks yang kontras sehingga mudah dibaca, sedangkan pada mode gelap warna latar berubah menjadi lebih gelap dengan teks terang untuk mengurangi ketegangan mata saat digunakan dalam kondisi minim cahaya.
@@ -614,27 +608,36 @@ Setiap halaman ditampilkan dalam dua mode, yaitu Light Mode dan Dark Mode, untuk
 
 #### *Tampilan Light Mode*
 
-<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/d3e0822a-3772-4e66-8717-6116a992b489" />
+<p align="center">
+   <img width="556" height="306" alt="Image" src="https://github.com/user-attachments/assets/3e21a84e-6c03-4afa-8f5f-f78888baf1e1" />
+</p>
 
 #### *Tampilan Dark Mode*
 
-<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" 
+<p align="center">
+   <img width="522" height="282" alt="Image" src="https://github.com/user-attachments/assets/6b97a849-1b4f-4bd7-a1ea-01e9034fdf06" />
+</p>
 
 ### 7. Dialog Konfirmasi Logout
 
 #### *Tampilan Light Mode*
 
-<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/d3e0822a-3772-4e66-8717-6116a992b489" />
+<p align="center">
+   <img width="433" height="282" alt="Image" src="https://github.com/user-attachments/assets/f1ac1183-91d9-4120-8d40-701afd7de3a1" />
+</p>
 
 #### *Tampilan Dark Mode*
 
-<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" 
+<p align="center">
+   <img width="442" height="278" alt="Image" src="https://github.com/user-attachments/assets/e1f93cca-93e2-451e-8afa-81168f27a78f" />
+</p>
 
 ---
 
 </details>
 
-## 🗂 ALUR PENGGUNAAN APLIKASI 
+<details>
+<summary><h2>📁 ALUR PENGGUNAAN APLIKASI<h2></summary>
 
 Berikut ini adalah alur penggunaan aplikasi **Beauti-Fy Salon** dari pertama kali dibuka hingga pengguna keluar dari sistem:
 
