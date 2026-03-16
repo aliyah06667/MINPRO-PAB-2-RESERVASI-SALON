@@ -71,7 +71,7 @@ Folder ini menyimpan file yang digunakan untuk mendefinisikan struktur data. Fol
 
   File ini digunakan untuk mendefinisikan struktur reservasi yang terdiri dari beberapa field seperti id, name, contact, service, date, notes, dan price. Dengan adanya model ini, pengelolaan dan pengiriman data antara form, halaman, dan service yang terhubung dengan Supabase menjadi lebih mudah.
 
-### *3. services/*
+### *3. Folder services/*
 
 Folder ini menyimpan file yang digunakan untuk menangani proses komunikasi antara aplikasi dengan database Supabase. Folder `services` berisi:
 
