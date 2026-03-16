@@ -67,7 +67,7 @@ Selain itu, pengaturan perubahan tema juga diletakkan pada bagian ini agar bisa 
 
 Folder ini menyimpan file yang digunakan untuk mendefinisikan struktur data. Folder `models` berisi:
 
-- #### *reservation.dart*
+- ***reservation.dart***
 
   File ini digunakan untuk mendefinisikan struktur reservasi yang terdiri dari beberapa field seperti id, name, contact, service, date, notes, dan price. Dengan adanya model ini, pengelolaan dan pengiriman data antara form, halaman, dan service yang terhubung dengan Supabase menjadi lebih mudah.
 
@@ -75,7 +75,7 @@ Folder ini menyimpan file yang digunakan untuk mendefinisikan struktur data. Fol
 
 Folder ini menyimpan file yang digunakan untuk menangani proses komunikasi antara aplikasi dengan database Supabase. Folder `services` berisi:
 
-- #### *reservation_service.dart*
+- ***reservation_service.dart***
 
   File ini digunakan untuk menjalankan seluruh operasi CRUD (Create, Read, Update, Delete) pada tabel `reservations` di Supabase. Beberapa fungsi yang terdapat di dalamnya, yaitu:
   - `getReservations()` : mengambil seluruh data
@@ -89,23 +89,23 @@ Dengan memisahkan bagian ini dari halaman, kode menjadi lebih bersih karena hala
 
 Folder ini menyimpan file yang terdapat seluruh halaman untuk berinteraksi langsung dengan pengguna. Folder `pages` berisi:
 
-- #### *login_page.dart*
+- ***login_page.dart***
 
   Halaman autentikasi pengguna untuk masuk ke dalam aplikasi menggunakan email dan password melalui Supabase Auth. Dilengkapi dengan validasi input, fitur show/hide password, notifikasi login berhasil/gagal, serta navigasi ke halaman register.
 
-- #### *register_page.dart*
+- ***register_page.dart***
 
   Halaman pendaftaran akun baru menggunakan email dan password melalui Supabase Auth. Terdapat validasi minimal password dan notifikasi jika registrasi berhasil atau gagal. Setelah berhasil, pengguna diarahkan kembali ke halaman login.
 
-- #### *home_page.dart*
+- ***home_page.dart***
   
   Halaman utama yang menampilkan daftar reservasi dan mengelola state data reservasi serta fitur-fitur yaitu Tambah data, Edit data dan Hapus data. Data ditampilkan langsung dari database Supabase.
   
-- #### *add_page.dart*
+- ***add_page.dart***
   
   Halaman berisi form untuk menambahkan data reservasi baru menggunakan TextField, DropdownButtonFormField, dan showDatePicker. Data yang disimpan akan dikirim ke Supabase.
   
-- #### *edit_page.dart*
+- ***edit_page.dart***
   
   Halaman berfungsi untuk mengubah data reservasi yang sudah ada atau sebelumnya telah dibuat di halaman `add_page`. Data lama akan otomatis terisi dan dapat diperbarui.
 
@@ -243,7 +243,7 @@ Jika registrasi berhasil:
 - Konfirmasi sebelum logout
 - Refresh otomatis setelah melakukan CRUD
 
- #### a. Menampilkan Data (Read)
+ **a. Menampilkan Data (Read)**
 
 Data diambil melalui ReservationService:
 
@@ -264,7 +264,7 @@ Selama proses pengambilan data berlangsung, ditampilkan `CircularProgressIndicat
 
 Setelah data berubah (create, update, delete), `setState()` dipanggil agar tampilan otomatis diperbarui.
 
-#### b. Tombol Tambah Data
+**b. Tombol Tambah Data**
 
 Pada bagian bawah halaman terdapat tombol  `FloatingActionButton` untuk menambahkan reservasi baru.
 
@@ -278,7 +278,7 @@ FloatingActionButton(
 
 Tombol ini mengarahkan pengguna ke *AddPage*.
 
-#### c. Tombol Edit
+**c. Tombol Edit**
 
 Setiap item memiliki tombol edit yang akan mengirimkan data lama ke *EditPage* melalui parameter constructor:
 
@@ -293,7 +293,7 @@ Navigator.push(
 
 Data lama kemudian diisi otomatis ke dalam form.
 
-#### d. Tombol Delete
+**d. Tombol Delete**
 
 Delete Reservation digunakan untuk menghapus data reservasi yang sudah ada dari database Supabase. Sebelum data benar-benar dihapus, sistem akan menampilkan dialog konfirmasi untuk memastikan pengguna tidak menghapus data secara tidak sengaja.
 
@@ -341,7 +341,7 @@ Jika pengguna memilih Delete:
   - Kembali ke *HomePage*
   - Data otomatis diperbarui
 
-#### e. Logout
+**e. Logout**
 
 Logout dilakukan menggunakan:
 
@@ -538,84 +538,83 @@ Berikut ini adalah daftar widget dan komponen yang digunakan beserta fungsinya d
 <details>
 <summary><h2>📁 TAMPILAN APLIKASI (LIGHT/DARK)<h2></summary>
 
-Berikut ini adalah hasil implementasi antarmuka dari aplikasi Beauti-Fy Salon.
-Setiap halaman ditampilkan dalam dua mode, yaitu Light Mode dan Dark Mode, untuk menunjukkan bahwa sistem tema berjalan dengan baik dan konsisten di seluruh aplikasi. Pada mode terang, warna latar lebih cerah dengan teks yang kontras sehingga mudah dibaca, sedangkan pada mode gelap warna latar berubah menjadi lebih gelap dengan teks terang untuk mengurangi ketegangan mata saat digunakan dalam kondisi minim cahaya.
+Berikut ini adalah hasil implementasi antarmuka dari aplikasi **Beauti-Fy Salon**. Setiap halaman ditampilkan dalam dua mode, yaitu Light Mode dan Dark Mode, pada mode terang warna latar lebih cerah dengan teks yang kontras sehingga mudah dibaca, sedangkan pada mode gelap warna latar berubah menjadi lebih gelap dengan teks terang untuk mengurangi ketegangan mata saat digunakan dalam kondisi minim cahaya.
 
 ### 1. Halaman LoginPage
 
-#### *Tampilan Light Mode*
-  
-<img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/a95a1a91-4c8f-4c47-b232-5211d9880ee4" />
+- **Tampilan Light Mode**
 
-#### *Tampilan Dark Mode*
-  
-<img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/808be766-461f-4f77-8c72-c9f230f40a68" />
+  <img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/a95a1a91-4c8f-4c47-b232-5211d9880ee4" />
+
+- **Tampilan Dark Mode**
+
+  <img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/808be766-461f-4f77-8c72-c9f230f40a68" />
 
 ### 2. Halaman RegisterPage
 
-#### *Tampilan Light Mode*
+- **Tampilan Light Mode**
 
-<img width="1919" height="907" alt="Image" src="https://github.com/user-attachments/assets/116edb3f-24af-460b-8b16-7a94118306dd" />
+  <img width="1919" height="907" alt="Image" src="https://github.com/user-attachments/assets/116edb3f-24af-460b-8b16-7a94118306dd" />
 
-#### *Tampilan Dark Mode*
+- **Tampilan Dark Mode**
 
 <img width="1919" height="900" alt="Image" src="https://github.com/user-attachments/assets/63acceae-e680-45a0-a006-3d650bda3b9d" />
 
 ### 3. Halaman HomePage
 
-#### *Tampilan Light Mode*
+- **Tampilan Light Mode**
 
-<img width="1919" height="907" alt="Image" src="https://github.com/user-attachments/assets/41aaec33-7a63-43e4-a2df-34bf2d154a8a" />
+  <img width="1919" height="907" alt="Image" src="https://github.com/user-attachments/assets/41aaec33-7a63-43e4-a2df-34bf2d154a8a" />
 
-#### *Tampilan Dark Mode*
+- **Tampilan Dark Mode**
 
-<img width="1919" height="908" alt="Image" src="https://github.com/user-attachments/assets/7d16de9a-b5c8-49aa-9a59-c4f4ce9998a7" />
+  <img width="1919" height="908" alt="Image" src="https://github.com/user-attachments/assets/7d16de9a-b5c8-49aa-9a59-c4f4ce9998a7" />
 
 ### 4. Add Reservation Page
 
-#### *Tampilan Light Mode*
+- **Tampilan Light Mode**
 
-<img width="1919" height="903" alt="Image" src="https://github.com/user-attachments/assets/82c6ad67-3c3c-4f0d-9efa-4b13967bf456" />
+  <img width="1919" height="903" alt="Image" src="https://github.com/user-attachments/assets/82c6ad67-3c3c-4f0d-9efa-4b13967bf456" />
 
-#### *Tampilan Dark Mode*
+- **Tampilan Dark Mode**
 
-<img width="1919" height="904" alt="Image" src="https://github.com/user-attachments/assets/0ab2ded1-9531-4255-9c86-57d719b54582" />
+  <img width="1919" height="904" alt="Image" src="https://github.com/user-attachments/assets/0ab2ded1-9531-4255-9c86-57d719b54582" />
 
 ### 5. Edit Reservation Page
 
-#### *Tampilan Light Mode*
+- **Tampilan Light Mode**
 
-<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/d3e0822a-3772-4e66-8717-6116a992b489" />
+  <img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/d3e0822a-3772-4e66-8717-6116a992b489" />
 
-#### *Tampilan Dark Mode*
+- **Tampilan Dark Mode**
 
-<img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" />
+  <img width="1919" height="905" alt="Image" src="https://github.com/user-attachments/assets/b5b1f910-ae73-4a50-878e-2d2d19d1cd9e" />
 
 ### 6. Dialog Konfirmasi Delete
 
-#### *Tampilan Light Mode*
+- **Tampilan Light Mode**
 
-<p align="center">
+  <p align="center">
    <img width="556" height="306" alt="Image" src="https://github.com/user-attachments/assets/3e21a84e-6c03-4afa-8f5f-f78888baf1e1" />
 </p>
 
-#### *Tampilan Dark Mode*
+- **Tampilan Dark Mode**
 
-<p align="center">
+  <p align="center">
    <img width="522" height="282" alt="Image" src="https://github.com/user-attachments/assets/6b97a849-1b4f-4bd7-a1ea-01e9034fdf06" />
 </p>
 
 ### 7. Dialog Konfirmasi Logout
 
-#### *Tampilan Light Mode*
+- **Tampilan Light Mode**
 
-<p align="center">
+  <p align="center">
    <img width="433" height="282" alt="Image" src="https://github.com/user-attachments/assets/f1ac1183-91d9-4120-8d40-701afd7de3a1" />
 </p>
 
-#### *Tampilan Dark Mode*
+- **Tampilan Dark Mode**
 
-<p align="center">
+  <p align="center">
    <img width="442" height="278" alt="Image" src="https://github.com/user-attachments/assets/e1f93cca-93e2-451e-8afa-81168f27a78f" />
 </p>
 
