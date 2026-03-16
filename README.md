@@ -127,27 +127,22 @@ Aplikasi ini menggunakan satu tabel utama bernama `reservations`.Berikut ini ada
 | notes   | text      | Catatan tambahan  |
 | price   | int       | Harga layanan     |
 
-- #### id
-  Digunakan sebagai identitas unik setiap data reservasi. Nilai ini dibuat otomatis oleh database sehingga tidak perlu diinput secara manual.
+Penjelasan masing-masing atribut:
 
-- #### name
-  Digunakan untuk menyimpan nama pelanggan yang melakukan reservasi. Field ini wajib diisi agar data dapat disimpan.
+-  **id** : Digunakan sebagai identitas unik setiap data reservasi. Nilai ini dibuat otomatis oleh database sehingga tidak perlu diinput secara manual.
 
-- #### contact
-  Digunakan untuk menyimpan nomor telepon atau kontak pelanggan. Field ini juga wajib diisi untuk memudahkan komunikasi.
+- **name** : Digunakan untuk menyimpan nama pelanggan yang melakukan reservasi. Field ini wajib diisi agar data dapat disimpan.
 
- - #### service
-   Digunakan untuk menyimpan jenis layanan yang dipilih, misalnya haircut, coloring, atau treatment.
+- **contact** : Digunakan untuk menyimpan nomor telepon atau kontak pelanggan. Field ini juga wajib diisi untuk memudahkan komunikasi.
 
-- #### date
-  Digunakan untuk menyimpan tanggal reservasi. Tanggal dipilih melalui DatePicker agar format lebih terkontrol.
+ - **service** :  Digunakan untuk menyimpan jenis layanan yang dipilih, misalnya haircut, coloring, atau treatment.
 
-- #### notes
-  Digunakan untuk menyimpan catatan tambahan dari pelanggan.
+- **date** : Digunakan untuk menyimpan tanggal reservasi. Tanggal dipilih melalui DatePicker agar format lebih terkontrol.
+
+- **notes** : Digunakan untuk menyimpan catatan tambahan dari pelanggan.
 Field ini bersifat opsional.
 
-- #### price
-  Digunakan untuk menyimpan harga layanan. Nilai ini  ditentukan otomatis berdasarkan layanan yang dipilih.
+- **price** : Digunakan untuk menyimpan harga layanan. Nilai ini  ditentukan otomatis berdasarkan layanan yang dipilih.
 
 ---
 
