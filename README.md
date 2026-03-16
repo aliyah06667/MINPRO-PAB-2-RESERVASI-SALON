@@ -128,22 +128,13 @@ Berikut ini adalah struktur database yang digunakan pada aplikasi **Beauti-Fy Sa
 | price      | integer   | Menyimpan harga layanan sesuai pilihan service. Tidak boleh kosong.                        |
 | created_at | timestamp | Menyimpan waktu saat data reservasi dibuat. Otomatis terisi dengan waktu saat insert data. |
 
-Penjelasan masing-masing atribut:
+Penjelasan tambahan:
 
--  **id** : Digunakan sebagai identitas unik setiap data reservasi. Nilai ini dibuat otomatis oleh database sehingga tidak perlu diinput secara manual.
-
-- **name** : Digunakan untuk menyimpan nama pelanggan yang melakukan reservasi. Field ini wajib diisi agar data dapat disimpan.
-
-- **contact** : Digunakan untuk menyimpan nomor telepon atau kontak pelanggan. Field ini juga wajib diisi untuk memudahkan komunikasi.
-
- - **service** :  Digunakan untuk menyimpan jenis layanan yang dipilih, misalnya haircut, coloring, atau treatment.
-
-- **date** : Digunakan untuk menyimpan tanggal reservasi. Tanggal dipilih melalui DatePicker agar format lebih terkontrol.
-
-- **notes** : Digunakan untuk menyimpan catatan tambahan dari pelanggan.
-Field ini bersifat opsional.
-
-- **price** : Digunakan untuk menyimpan harga layanan. Nilai ini  ditentukan otomatis berdasarkan layanan yang dipilih.
+- Kolom `id` dibuat otomatis oleh database sehingga setiap reservasi memiliki identitas unik.
+- Kolom yang memiliki keterangan *not null* berarti wajib diisi sebelum data dapat disimpan.
+- Kolom `notes` bersifat opsional sehingga pengguna boleh mengosongkannya.
+- Kolom `created_at` terisi otomatis menggunakan `now()` saat data pertama kali dibuat.
+- Harga layanan (`price`) disimpan dalam bentuk angka bertipe integer agar lebih mudah digunakan untuk perhitungan jika suatu saat ingin dikembangkan lebih lanjut.
 
 ---
 
